@@ -3,7 +3,7 @@ const User = require('../models/User')
 const { registerValidation, loginValidation } = require('../validation')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-require('dotenv/config')
+
 
 router.post('/register', async (req, res) => {
     const { error } = registerValidation(req.body)
@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
     //create and assign jwt
     const token = jwt.sign({_id: user._id}, process.env.API_TOKEN)
 
-    res.status(200).json({
+    res.header('auth-token', token).status(200).json({
         msg: 'Success',
         token
     })

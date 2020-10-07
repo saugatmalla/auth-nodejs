@@ -1,10 +1,11 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
 require('dotenv/config')
 
 //Routes
-const authRoute = require('./routes/auth');
+const authRoute = require('./routes/auth')
+const postsRoute = require('./routes/posts')
 
 //connect to db
 mongoose.connect(process.env.MONGODB,
@@ -16,7 +17,8 @@ mongoose.connect(process.env.MONGODB,
 app.use(express.json())
 
 //route middlewares
-app.use('/api/user', authRoute);
+app.use('/api/user', authRoute)
+app.use('/api/posts', postsRoute)
 
 
 app.listen(3000, () => {
