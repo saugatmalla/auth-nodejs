@@ -28,7 +28,20 @@ const loginValidation = (data) => {
 const authorValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().required(),
-        age: Joi.number().required().min(2).max(150)
+        age: Joi.number().required().min(2).max(150),
+        updated_at: Joi.date()
+    })
+    return schema.validate(data);
+}
+
+const bookValidation = (data) => {
+    const schema = Joi.object({
+        name: Joi.string().required(),
+        genre: Joi.string().required(),
+        author: Joi.string().required(),
+        published_on: Joi.date().required(),
+        released: Joi.boolean(),
+        updated_at: Joi.date()
     })
     return schema.validate(data);
 }
@@ -36,3 +49,4 @@ const authorValidation = (data) => {
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.authorValidation = authorValidation;
+module.exports.bookValidation = bookValidation;

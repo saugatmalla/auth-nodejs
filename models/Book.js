@@ -7,8 +7,8 @@ const bookSchema = new mongoose.Schema({
         required: true
     },
     author: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Author'
     },
     genre: {
         type: String,
@@ -19,7 +19,7 @@ const bookSchema = new mongoose.Schema({
         required: true
     },
     released: {
-        type: boolean,
+        type: Boolean,
         default: true
     },
     created_at: {
@@ -32,4 +32,4 @@ const bookSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongose.model('Book', bookSchema)
+module.exports = mongoose.model('Book', bookSchema)
